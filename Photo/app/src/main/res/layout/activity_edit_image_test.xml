@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF0000"> <!-- 红色背景，方便查看布局区域 -->
+
+    <ImageView
+        android:id="@+id/testImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:background="#00FF00" /> <!-- 绿色背景，方便查看ImageView区域 -->
+
+</FrameLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<!--    package="com.example.photo"-->
+
+    <!-- 读取存储权限（Android 10以下需要） -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 写存储权限（Android 10以下需要） -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" /> <!-- Android 10+ 不再需要此权限 -->
+
+    <!-- 网络权限（用于分享等） -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 相机特性 -->
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <!-- Android 13+ 新增的图片权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/Theme.Photo"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".Splash"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 主界面 -->
+        <activity android:name=".MainActivity" />
+
+        <!-- 相册界面 -->
+        <activity android:name=".GalleryActivity" />
+
+        <!-- 文件夹详情界面 -->
+        <activity android:name=".FolderDetailActivity" />
+
+        <!-- 图片编辑界面 -->
+        <activity android:name=".EditImageActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+<!--        &lt;!&ndash; 注册 EditImageActivity &ndash;&gt;-->
+<!--        <activity android:name=".EditImageActivity" />-->
+        <!--相机-->
+        <activity android:name=".CameraActivity" />
+        <!-- 文件提供者，用于分享图片 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>
